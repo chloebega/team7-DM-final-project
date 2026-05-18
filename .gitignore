@@ -1,0 +1,4 @@
+env_kaggle/
+__pycache__/
+data/
+*.csv
