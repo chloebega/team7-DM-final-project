@@ -1,0 +1,36 @@
+Logging to logs/tft_trial4_predict_20260610_023415.log
+Starting TFT trial 4 inference at Wed Jun 10 02:34:15 CST 2026
+Using checkpoint: /root/tft_best_trial4_final/trial4-full-epoch=03-val_loss=0.04502.ckpt
+Loading raw train and test data...
+Inference dataframe shape: (283248, 22)
+Regions: 2248, rows per region should be 126.
+count    2248.0
+mean      126.0
+std         0.0
+min       126.0
+25%       126.0
+50%       126.0
+75%       126.0
+max       126.0
+Loading processed training parquet to rebuild the training dataset metadata...
+Prediction dataset samples: 2248
+Running model.predict...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/5 [00:00<?, ?it/s]Predicting DataLoader 0:  20%|██        | 1/5 [00:00<00:02,  1.68it/s]Predicting DataLoader 0:  40%|████      | 2/5 [00:01<00:01,  1.92it/s]Predicting DataLoader 0:  60%|██████    | 3/5 [00:01<00:00,  2.02it/s]Predicting DataLoader 0:  80%|████████  | 4/5 [00:01<00:00,  2.07it/s]Predicting DataLoader 0: 100%|██████████| 5/5 [00:02<00:00,  2.42it/s]Predicting DataLoader 0: 100%|██████████| 5/5 [00:02<00:00,  2.42it/s]
+Saved prediction files:
+  tft_trial4_inference_outputs/tft_trial4_daily_raw_predictions.csv
+  tft_trial4_inference_outputs/tft_trial4_weekly_clipped_predictions_wide.csv
+  tft_trial4_inference_outputs/tft_trial4_weekly_clipped_predictions_long.csv
+Weekly preview:
+region_id       week_1       week_2       week_3       week_4  week_5
+       R1 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00     0.0
+    R1001 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00     0.0
+    R1002 9.954579e-10 4.781930e-10 0.000000e+00 0.000000e+00     0.0
+    R1005 2.059805e-09 1.924345e-09 1.198872e-09 0.000000e+00     0.0
+    R1006 2.360515e-09 2.412986e-09 2.109420e-09 1.186744e-09     0.0
+Inference complete.
+Finished TFT trial 4 inference with status 0 at Wed Jun 10 02:35:34 CST 2026

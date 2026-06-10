@@ -1,0 +1,15 @@
+{
+  "mode": "full",
+  "train_path": "train.csv",
+  "test_path": "test.csv",
+  "sample_path": "sample_submission.csv",
+  "out_dir": "lgbm_outputs",
+  "max_regions": null,
+  "num_boost_round": 1200,
+  "early_stopping_rounds": 150,
+  "nowcast_rounds": 700,
+  "min_forecast_week": 100,
+  "valid_origin_offsets": "25,20,15,10,5",
+  "no_sample_weights": false,
+  "sort_input": false
+}

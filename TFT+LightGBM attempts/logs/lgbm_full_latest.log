@@ -1,0 +1,196 @@
+[05:27:00] START load train/test CSV files
+[05:27:06] Loaded train (12319040, 17), test (204568, 16)
+[05:27:06] DONE  load train/test CSV files in 6.0s; peak RSS 1.94 GB
+[05:27:06] START prepare train order/date/index
+[05:27:06] train: assigning region codes
+[05:27:07] train: parsing synthetic date parts with fixed-width string slicing
+[05:27:09] train: sorting by region/date because CSV order failed the region/date sanity check
+[05:27:10] train: creating region-local day index
+[05:27:10] DONE  prepare train order/date/index in 4.0s; peak RSS 4.00 GB
+[05:27:10] START prepare test order/date/index
+[05:27:10] test: assigning region codes
+[05:27:10] test: parsing synthetic date parts with fixed-width string slicing
+[05:27:10] test: CSV order verified; skipping expensive full-frame sort
+[05:27:10] test: creating region-local day index
+[05:27:10] DONE  prepare test order/date/index in 0.1s; peak RSS 4.00 GB
+[05:27:10] START derive train daily weather features
+[05:27:11] DONE  derive train daily weather features in 1.1s; peak RSS 6.17 GB
+[05:27:11] START derive test daily weather features
+[05:27:11] DONE  derive test daily weather features in 0.0s; peak RSS 6.17 GB
+[05:27:11] START extract weekly endpoint rows
+[05:27:12] Weekly endpoints: train (1757936, 19), test history (29224, 19)
+[05:27:12] DONE  extract weekly endpoint rows in 0.3s; peak RSS 6.17 GB
+[05:27:12] START build train weekly rolling weather features
+[05:27:12] Building weekly weather features for train: 12,319,040 daily rows -> 1,757,936 endpoints
+[05:27:19]   finished rolling features for prec_clip
+[05:27:21]   finished rolling features for is_dry_day
+[05:27:23]   finished rolling features for is_wet_day_1mm
+[05:27:25]   finished rolling features for is_wet_day_5mm
+[05:27:27]   finished rolling features for is_heavy_precip
+[05:27:29]   finished rolling features for heat_day_30
+[05:27:30]   finished rolling features for heat_day_35
+[05:27:33]   finished rolling features for tmp
+[05:27:35]   finished rolling features for tmp_max
+[05:27:37]   finished rolling features for tmp_min
+[05:27:39]   finished rolling features for tmp_range
+[05:27:41]   finished rolling features for surf_tmp
+[05:27:44]   finished rolling features for humidity
+[05:27:46]   finished rolling features for surf_pre
+[05:27:48]   finished rolling features for wind
+[05:27:51]   finished rolling features for wind_max
+[05:27:54]   finished rolling features for vpd
+[05:27:56]   finished rolling features for humidity_deficit
+[05:27:58]   finished rolling features for wind_stress
+[05:28:00]   finished rolling features for water_balance
+[05:28:03]   finished rolling features for stress_daily
+[05:28:04] DONE  build train weekly rolling weather features in 52.8s; peak RSS 9.00 GB
+[05:28:04] START build test weekly rolling weather features
+[05:28:04] Building weekly weather features for test: 204,568 daily rows -> 29,224 endpoints
+[05:28:05]   finished rolling features for prec_clip
+[05:28:05]   finished rolling features for is_dry_day
+[05:28:05]   finished rolling features for is_wet_day_1mm
+[05:28:05]   finished rolling features for is_wet_day_5mm
+[05:28:05]   finished rolling features for is_heavy_precip
+[05:28:05]   finished rolling features for heat_day_30
+[05:28:05]   finished rolling features for heat_day_35
+[05:28:06]   finished rolling features for tmp
+[05:28:06]   finished rolling features for tmp_max
+[05:28:06]   finished rolling features for tmp_min
+[05:28:06]   finished rolling features for tmp_range
+[05:28:06]   finished rolling features for surf_tmp
+[05:28:06]   finished rolling features for humidity
+[05:28:06]   finished rolling features for surf_pre
+[05:28:06]   finished rolling features for wind
+[05:28:06]   finished rolling features for wind_max
+[05:28:07]   finished rolling features for vpd
+[05:28:07]   finished rolling features for humidity_deficit
+[05:28:07]   finished rolling features for wind_stress
+[05:28:07]   finished rolling features for water_balance
+[05:28:07]   finished rolling features for stress_daily
+[05:28:08] DONE  build test weekly rolling weather features in 3.1s; peak RSS 9.00 GB
+[05:28:08] START add climatology and horizon targets
+[05:28:08] DONE  add climatology and horizon targets in 0.9s; peak RSS 9.00 GB
+[05:28:08] START train nowcast model and impute test score history
+[05:28:08] Training stage-1 nowcast models
+[05:28:09]   nowcast fold weeks [80, 220) with 179,840 train / 314,720 valid rows
+Training until validation scores don't improve for 75 rounds
+[200]	valid's l1: 0.738226
+Early stopping, best iteration is:
+[200]	valid's l1: 0.738226
+[05:28:24]   nowcast fold weeks [220, 360) with 494,560 train / 314,720 valid rows
+Training until validation scores don't improve for 75 rounds
+Early stopping, best iteration is:
+[25]	valid's l1: 0.493967
+[05:28:35]   nowcast fold weeks [360, 501) with 809,280 train / 316,968 valid rows
+Training until validation scores don't improve for 75 rounds
+[200]	valid's l1: 0.901567
+Early stopping, best iteration is:
+[198]	valid's l1: 0.901459
+[05:29:11]   nowcast fold weeks [501, 641) with 1,126,248 train / 314,720 valid rows
+Training until validation scores don't improve for 75 rounds
+Early stopping, best iteration is:
+[28]	valid's l1: 0.607229
+[05:29:29]   nowcast fold weeks [641, 782) with 1,440,968 train / 316,968 valid rows
+Training until validation scores don't improve for 75 rounds
+Early stopping, best iteration is:
+[47]	valid's l1: 0.452657
+[05:29:56]   fitting final nowcast model for 50 rounds on all weekly labels
+[05:30:10] DONE  train nowcast model and impute test score history in 121.7s; peak RSS 10.73 GB
+[05:30:10] START add score-state features
+[05:30:14] DONE  add score-state features in 3.8s; peak RSS 10.73 GB
+[05:30:14] START train five horizon models and predict test
+[05:30:14] Forecast validation origins: [756, 761, 766, 771, 776]
+[05:30:14] Training horizon 1: 1,474,688 train / 11,240 valid / 1,530,888 final rows
+Training until validation scores don't improve for 150 rounds
+[100]	valid's l1: 0.312096
+[200]	valid's l1: 0.28173
+[300]	valid's l1: 0.278069
+[400]	valid's l1: 0.276326
+[500]	valid's l1: 0.275351
+[600]	valid's l1: 0.274427
+[700]	valid's l1: 0.274349
+[800]	valid's l1: 0.273922
+[900]	valid's l1: 0.273733
+[1000]	valid's l1: 0.273422
+[1100]	valid's l1: 0.273468
+Early stopping, best iteration is:
+[992]	valid's l1: 0.273386
+[05:35:58]   fitting final horizon 1 model for 992 rounds
+[05:41:05] Training horizon 2: 1,474,688 train / 11,240 valid / 1,528,640 final rows
+Training until validation scores don't improve for 150 rounds
+[100]	valid's l1: 0.317185
+[200]	valid's l1: 0.286489
+[300]	valid's l1: 0.28253
+[400]	valid's l1: 0.281572
+[500]	valid's l1: 0.28097
+[600]	valid's l1: 0.280349
+[700]	valid's l1: 0.280132
+[800]	valid's l1: 0.279833
+[900]	valid's l1: 0.279546
+[1000]	valid's l1: 0.279583
+[1100]	valid's l1: 0.27799
+[1200]	valid's l1: 0.277454
+Did not meet early stopping. Best iteration is:
+[1196]	valid's l1: 0.277428
+[05:47:00]   fitting final horizon 2 model for 1196 rounds
+[05:52:56] Training horizon 3: 1,474,688 train / 11,240 valid / 1,526,392 final rows
+Training until validation scores don't improve for 150 rounds
+[100]	valid's l1: 0.324037
+[200]	valid's l1: 0.293467
+[300]	valid's l1: 0.289809
+[400]	valid's l1: 0.288049
+[500]	valid's l1: 0.287197
+[600]	valid's l1: 0.286177
+[700]	valid's l1: 0.285949
+[800]	valid's l1: 0.286107
+[900]	valid's l1: 0.286117
+Early stopping, best iteration is:
+[762]	valid's l1: 0.285534
+[05:57:32]   fitting final horizon 3 model for 762 rounds
+[06:01:29] Training horizon 4: 1,474,688 train / 11,240 valid / 1,524,144 final rows
+Training until validation scores don't improve for 150 rounds
+[100]	valid's l1: 0.328827
+[200]	valid's l1: 0.30043
+[300]	valid's l1: 0.296367
+[400]	valid's l1: 0.295257
+[500]	valid's l1: 0.293938
+[600]	valid's l1: 0.293254
+[700]	valid's l1: 0.293081
+[800]	valid's l1: 0.292936
+[900]	valid's l1: 0.293164
+Early stopping, best iteration is:
+[780]	valid's l1: 0.292772
+[06:06:03]   fitting final horizon 4 model for 780 rounds
+[06:10:03] Training horizon 5: 1,474,688 train / 11,240 valid / 1,521,896 final rows
+Training until validation scores don't improve for 150 rounds
+[100]	valid's l1: 0.351113
+[200]	valid's l1: 0.321642
+[300]	valid's l1: 0.316172
+[400]	valid's l1: 0.315651
+[500]	valid's l1: 0.315035
+[600]	valid's l1: 0.316227
+Early stopping, best iteration is:
+[466]	valid's l1: 0.314124
+[06:13:10]   fitting final horizon 5 model for 466 rounds
+[06:15:40] DONE  train five horizon models and predict test in 2,725.7s; peak RSS 10.73 GB
+[06:15:40] Validation MAE by horizon, with horizon 0 as overall:
+ horizon      mae
+     1.0 0.269734
+     2.0 0.273446
+     3.0 0.282183
+     4.0 0.288977
+     5.0 0.311974
+     0.0 0.285263
+[06:15:40] Saved submission: lgbm_outputs/lgbm_submission.csv
+[06:15:40] Head of submission:
+region_id  pred_week1  pred_week2  pred_week3  pred_week4  pred_week5
+       R1    0.613622    0.673770    0.506923    0.547738    0.424075
+       R2    0.234314    0.387561    0.558071    0.284259    0.196710
+       R3    1.806858    1.926508    1.775683    1.776053    1.537813
+       R4    1.654653    1.809258    2.235584    2.284857    2.777857
+       R6    1.364097    1.307187    1.081723    1.104517    1.306839
+       R7    0.317572    0.208935    0.189519    0.431801    0.329734
+       R8    3.727700    3.632730    3.147918    3.061219    3.067062
+       R9    1.754791    1.654950    1.577767    1.652733    1.548870
+      R11    0.446360    0.671814    0.760060    0.619296    0.737267
+      R13    0.003770    0.145332    0.576923    0.155920    0.196170

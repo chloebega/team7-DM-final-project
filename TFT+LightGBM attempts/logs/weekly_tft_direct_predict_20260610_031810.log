@@ -1,0 +1,30 @@
+Logging to logs/weekly_tft_direct_predict_20260610_031810.log
+Starting weekly direct TFT inference at Wed Jun 10 03:18:10 CST 2026
+Seed set to 42
+Rebuilding training dataset metadata...
+Prediction samples: 2,248
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+💡 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/5 [00:00<?, ?it/s]Predicting DataLoader 0:  20%|██        | 1/5 [00:00<00:01,  3.90it/s]Predicting DataLoader 0:  40%|████      | 2/5 [00:00<00:00,  6.00it/s]Predicting DataLoader 0:  60%|██████    | 3/5 [00:00<00:00,  7.36it/s]Predicting DataLoader 0:  80%|████████  | 4/5 [00:00<00:00,  8.35it/s]Predicting DataLoader 0: 100%|██████████| 5/5 [00:00<00:00,  9.78it/s]Predicting DataLoader 0: 100%|██████████| 5/5 [00:00<00:00,  9.76it/s]
+Saved predictions: weekly_tft_direct_outputs/weekly_tft_direct_predictions_wide.csv
+Saved submission: weekly_tft_direct_outputs/weekly_tft_direct_submission.csv
+region_id  pred_week1  pred_week2  pred_week3  pred_week4  pred_week5
+       R1    0.064320    0.039365    0.028134    0.024472    0.024107
+       R2    0.011353    0.012136    0.012342    0.012437    0.012579
+       R3    4.026216    4.010609    3.897710    3.764739    3.620165
+       R4    3.305493    3.201287    3.111864    3.055872    3.017438
+       R6    3.554452    3.441202    3.284691    3.135448    2.986015
+       R7    0.015080    0.014990    0.015180    0.015788    0.016463
+       R8    4.257871    4.304187    4.279530    4.222882    4.146362
+       R9    3.642996    3.493804    3.290035    3.152653    3.061894
+      R11    0.011634    0.012099    0.012334    0.012020    0.011494
+      R13    0.012255    0.012375    0.012275    0.012176    0.012153
+      R14    0.975264    0.978547    0.989813    0.998988    1.006222
+      R15    4.169546    4.179279    4.139286    4.101760    4.073084
+      R16    3.355963    3.202084    3.064901    2.968455    2.894119
+      R18    3.294448    3.276629    3.171380    3.070885    2.989325
+      R19    4.352054    4.405559    4.393784    4.353181    4.297624
+Finished weekly direct TFT inference with status 0 at Wed Jun 10 03:18:59 CST 2026
